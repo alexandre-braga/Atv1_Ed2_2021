@@ -1,21 +1,14 @@
+#include <string>
 #include <vector>
+
 #include "./include/Balde.hpp"
 
-Class Balde{
-    private:
-        size_t profundidadeLocal;
-        size_t tamanhoM;
-        std::vector<string> pseudoChaves;
-    public:
-        Balde(){
-            this->profundidadeLocal = 0;
-            size_t tamanhoM;
-            std::vector<string> pseudoChaves;
-        }
-};
-
-void::Balde(){
-    
+Balde::Balde(size_t tamM):pseudoChaves{tamM} {
+    this->profundidadeLocal = 0;
+    this->tamanhoM = tamM;
 }
 
-#endif
+void Balde::atualizaBalde(std::string novaPseudoChave) {
+    pseudoChaves.push_back(novaPseudoChave);
+    this->profundidadeLocal += 1;
+}
