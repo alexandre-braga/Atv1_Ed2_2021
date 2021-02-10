@@ -7,13 +7,21 @@ Diretorio::Diretorio(size_t nBits):conjuntoBaldes{2} {
 }
 
 void Diretorio::insere(std::string pseudoChave){
-    
+    size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
+    int dLocal = conjuntoBaldes[indiceBalde]->getProfundidadeLocal();
+    int dGlobal = this->profundidadeGlobal;
+    if(!conjuntoBaldes[indiceBalde]->isCheio()){
+        conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
+    }
+    else{
+        if(dLocal < dGlobal){
+
+        }
+    }
 }
 
-//busca(pseudoChave);
-
 std::string Diretorio::busca(std::string pseudoChave){
-    size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2);
+    size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
     if (indiceBalde < pow(2,this->profundidadeGlobal)){
         conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
     }

@@ -10,8 +10,23 @@ void Balde::atualizaBalde(std::string novaPseudoChave) {
     this->profundidadeLocal += 1;
 }
 
+int Balde::getProfundidadeLocal(){
+    return this->profundidadeLocal;
+}
+
 int Balde::getTamanhoM(){
     return this->tamanhoM;
+}
+
+bool Balde::isCheio(){
+    if(this->size() < this->max_size()){
+        return false;
+    }
+    return true;
+}
+
+void Balde::insere(std::string pseudoChave){
+    pseudoChaves.push_back(pseudoChave);
 }
 
 std::string Balde::busca(std::string pseudoChave){

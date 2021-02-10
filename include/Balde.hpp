@@ -11,9 +11,14 @@ class Balde{
         size_t tamanhoM;
         std::vector<std::string> pseudoChaves;
     public:
-        Balde(size_t tamM);  
-        void atualizaBalde(std::string novaPseudoChave);
+        Balde(size_t tamM); 
+        
+        int getProfundidadeLocal();
         int getTamanhoM();
+        bool isCheio();
+
+        void atualizaBalde(std::string novaPseudoChave);
+        void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
 };
 
