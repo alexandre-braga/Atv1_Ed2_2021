@@ -17,9 +17,9 @@ class Balde{
         int getTamanhoM();
         bool isCheio();
 
-        void atualizaBalde(std::string novaPseudoChave);
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
+        void atualizaBalde();
 };
 
 #endif /* BALDE_HPP */

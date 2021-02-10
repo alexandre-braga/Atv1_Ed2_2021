@@ -15,7 +15,13 @@ void Diretorio::insere(std::string pseudoChave){
     }
     else{
         if(dLocal < dGlobal){
-
+            this->divideBaldes();
+            this->insere(pseudoChave);
+        }
+        //dLocal == dGlobal
+        else{
+            //this->duplicaDiretorio();
+            //chama por recursao;
         }
     }
 }
@@ -29,8 +35,11 @@ std::string Diretorio::busca(std::string pseudoChave){
         std::cout << "Element not found in conjuntoBaldes\n";
 }
 
-void Diretorio::divide(){
-
+void Diretorio::divideBaldes(){
+    //divide os baldes em 2 novos com profundidadeLocal+1
+    //cria um novo balde no caso, e mantem o original, 
+    //ajusta ponteiros e dlocal (atualizaBalde())
+    //redistribui entre os 2 novos baldes
 }
 
 void Diretorio::duplicaDiretorio(){

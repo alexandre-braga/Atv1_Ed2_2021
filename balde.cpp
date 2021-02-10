@@ -5,11 +5,6 @@ Balde::Balde(size_t tamM):pseudoChaves{tamM} {
     this->tamanhoM = tamM;
 }
 
-void Balde::atualizaBalde(std::string novaPseudoChave) {
-    pseudoChaves.push_back(novaPseudoChave);
-    this->profundidadeLocal += 1;
-}
-
 int Balde::getProfundidadeLocal(){
     return this->profundidadeLocal;
 }
@@ -19,22 +14,26 @@ int Balde::getTamanhoM(){
 }
 
 bool Balde::isCheio(){
-    if(this->size() < this->max_size()){
+    if(this->pseudoChaves.size() < this->pseudoChaves.max_size()){
         return false;
     }
     return true;
 }
 
 void Balde::insere(std::string pseudoChave){
-    pseudoChaves.push_back(pseudoChave);
+    this->pseudoChaves.push_back(pseudoChave);
 }
 
 std::string Balde::busca(std::string pseudoChave){
     std::vector<std::string>::iterator it;
-    it = find (pseudoChaves.begin(), pseudoChaves.end(), pseudoChave);
-    if (it != pseudoChaves.end())
+    it = find (this->pseudoChaves.begin(), this->pseudoChaves.end(), pseudoChave);
+    if (it != this->pseudoChaves.end())
         return pseudoChave;
         
     else
         std::cout << "Element not found in pseudoChaves\n";
+}
+
+void Balde::atualizaBalde() {
+    this->profundidadeLocal += 1;
 }
