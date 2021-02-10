@@ -1,5 +1,3 @@
-#include <vector>
-#include <cmath>
 #include "./include/Diretorio.hpp"
 
 Diretorio::Diretorio(size_t nBits):conjuntoBaldes{2} {
@@ -9,11 +7,18 @@ Diretorio::Diretorio(size_t nBits):conjuntoBaldes{2} {
 }
 
 void Diretorio::insere(std::string pseudoChave){
-
+    
 }
 
-std::string Diretorio::busca(std::string pseudoChave){
+//busca(pseudoChave);
 
+std::string Diretorio::busca(std::string pseudoChave){
+    size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2);
+    if (indiceBalde < pow(2,this->profundidadeGlobal)){
+        conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
+    }
+    else
+        std::cout << "Element not found in conjuntoBaldes\n";
 }
 
 void Diretorio::divide(){

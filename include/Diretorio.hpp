@@ -1,8 +1,10 @@
 #ifndef DIRETORIO_HPP
 #define DIRETORIO_HPP
 
+#include <iostream>
 #include <string>
 #include <vector>
+#include <cmath>
 
 #include "./Balde.hpp"
 
