@@ -14,15 +14,14 @@ void Diretorio::insere(std::string pseudoChave){
         conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
     }
     else{
-        if(dLocal < dGlobal){
-            this->divideBaldes();
-            this->insere(pseudoChave);
+        if(dLocal > dGlobal){
+            std::cout << "implementaçao errada\n";
         }
-        //dLocal == dGlobal
-        else{
-            //this->duplicaDiretorio();
-            //chama por recursao;
+        if(dLocal == dGlobal){
+            this->duplicaDiretorio();
         }
+        this->divideBaldes();
+        this->insere(pseudoChave);
     }
 }
 
