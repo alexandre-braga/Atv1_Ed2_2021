@@ -34,6 +34,6 @@ std::string Balde::busca(std::string pseudoChave){
         std::cout << "Element not found in pseudoChaves\n";
 }
 
-void Balde::atualizaBalde() {
-    this->profundidadeLocal += 1;
+void Balde::atualizaBalde(int profundidadeNova) {
+    this->profundidadeLocal = profundidadeNova;
 }
