@@ -13,6 +13,7 @@ int Balde::getTamanhoM(){
     return this->tamanhoM;
 }
 
+
 bool Balde::isCheio(){
     if(this->pseudoChaves.size() < this->pseudoChaves.max_size()){
         return false;
