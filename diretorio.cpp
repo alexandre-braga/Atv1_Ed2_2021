@@ -32,6 +32,7 @@ std::string Diretorio::busca(std::string pseudoChave){
     }
     else
         std::cout << "Element not found in conjuntoBaldes\n";
+    return 0;
 }
 
 void Diretorio::divideBaldes(int indiceBalde){
@@ -61,8 +62,12 @@ void Diretorio::divideBaldes(int indiceBalde){
 
 void Diretorio::duplicaDiretorio(){
     this->profundidadeGlobal += 1;
+
+    //cada indice na posição i, vai ter uma duplicata no indice na posição i+1
+    //duplicar o tam do vector, e ir movendo cada indice (pos e pos-1) posições a frente a partir do ultimo
+    //for com 2*pos = pos e 2*pos-1 = pos
+
     //std::vector<Balde*> duplicata {pow(2,profundidadeGlobal)};
-    //rearranjar
     
     //this->conjuntoBaldes = duplicata;
 }
