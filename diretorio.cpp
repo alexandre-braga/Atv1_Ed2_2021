@@ -18,7 +18,7 @@ size_t Diretorio::getTamanhoDir(){
 
 void Diretorio::imprimeDiretorio(){
     for(size_t i = 0; i < this->conjuntoBaldes.size(); i++){
-        std::cout << "\nElementos no balde de indice " << i << " e endereço " << conjuntoBaldes.at(i) << std::endl;
+        std::cout << "\nElementos no balde de indice " << i << " e endereço " << conjuntoBaldes.at(i) <<  " e profundidade " << this->conjuntoBaldes[i]->getProfundidadeLocal() << std::endl;
         this->conjuntoBaldes[i]->imprimeBalde();
     }
 }
@@ -50,6 +50,8 @@ void Diretorio::insere(std::string pseudoChave){
         this->divideBaldes(indiceBalde);
         this->insere(pseudoChave);
     }
+
+    std::cout << "inseriu a chave: " << pseudoChave << std::endl;
 }
 
 std::string Diretorio::busca(std::string pseudoChave){
@@ -72,7 +74,7 @@ void Diretorio::divideBaldes(size_t indiceBalde){
     //coloca os 2 com profundidade+1
     this->conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
     novoBalde->atualizaBalde(profundidadeNova);;
-    
+    size_t tempNovoIndicePraDelecao;
     //std::cout << "Baldes criados OK" << std::endl;
 
     //percorre o balde original
@@ -87,18 +89,21 @@ void Diretorio::divideBaldes(size_t indiceBalde){
 
         //se o novo indice for diferente do indice que ja tinha, coloca no novo Balde
         if(novoIndice != indiceBalde){
+            tempNovoIndicePraDelecao = novoIndice;
             novoBalde->insere(std::move(pseudoChaveAtual));
             //coloca o novo Balde no balde de novoIndice
             this->conjuntoBaldes[novoIndice] = novoBalde;
         }
     }
-    for (size_t i = 0; i < novoTamanhoM; i++){
+    for (size_t i = 0, delecoes = 0; i < novoTamanhoM - delecoes; i++){
         std::string pseudoChaveAtual = this->conjuntoBaldes[indiceBalde]->getPseudoChave(i);
         std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
         size_t novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
         std::cout << "\nnovoIndice:" << novoIndice << std::endl;
-        if(novoIndice != indiceBalde){
-           conjuntoBaldes[indiceBalde]->apagaPseudoChave(i);
+        if(novoIndice == tempNovoIndicePraDelecao){
+            std::cout << "Era pra apagar a pseudoChave: " << this->conjuntoBaldes[indiceBalde]->getPseudoChave(i) << std::endl;
+            conjuntoBaldes[indiceBalde]->apagaPseudoChave(i);
+            delecoes++;
         }
     }
 }
