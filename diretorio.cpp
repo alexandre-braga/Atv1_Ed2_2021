@@ -1,6 +1,6 @@
 #include "./include/Diretorio.hpp"
 
-Diretorio::Diretorio(size_t nBits, size_t tamM):conjuntoBaldes{2} {
+Diretorio::Diretorio(size_t nBits, size_t tamM) {
     this->profundidadeGlobal = 1;
     this->bitsB = nBits;
     std::vector<Balde*> conjuntoBaldes;
@@ -16,6 +16,12 @@ size_t Diretorio::getTamanhoDir(){
     return this->conjuntoBaldes.size();
 }
 
+void Diretorio::imprimeDiretorio(){
+    for(size_t i = 0; i < conjuntoBaldes.size(); i++){
+        std::cout << "Elementos no balde de indice " << i << std::endl;
+        conjuntoBaldes[i]->imprimeBalde();
+    }
+}
 void Diretorio::insere(std::string pseudoChave){
     size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
     size_t dLocal = conjuntoBaldes[indiceBalde]->getProfundidadeLocal();

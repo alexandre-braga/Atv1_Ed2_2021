@@ -17,6 +17,14 @@ std::string Balde::getPseudoChave(size_t i){
     return this->pseudoChaves[i];
 }
 
+void Balde::imprimeBalde(){
+    std::cout << "acessou a func" << std::endl;
+    for(size_t i = 0; i < this->getTamanhoM(); i++){
+        std::cout << "Elemento na pos: " << i << " do balde" << std::endl;
+        std::cout << "Com pseudochave: " << this->getPseudoChave(i) << std::endl;
+    }
+}
+
 bool Balde::isCheio(){
     if(this->pseudoChaves.size() < this->pseudoChaves.max_size()){
         return false;

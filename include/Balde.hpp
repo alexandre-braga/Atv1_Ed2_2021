@@ -17,6 +17,7 @@ class Balde{
         size_t getTamanhoM();
         std::string getPseudoChave(size_t i);
         bool isCheio();
+        void imprimeBalde();
 
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
