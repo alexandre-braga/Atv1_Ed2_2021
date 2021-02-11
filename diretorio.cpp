@@ -1,10 +1,17 @@
 #include "./include/Diretorio.hpp"
 
-Diretorio::Diretorio(size_t nBits):conjuntoBaldes{2} {
+Diretorio::Diretorio(size_t nBits, size_t tamM):conjuntoBaldes{2} {
     this->profundidadeGlobal = 1;
     this->bitsB = nBits;
     std::vector<Balde*> conjuntoBaldes;
+    for (size_t i = 0; i < 2; i++){
+        Balde* novoBalde = new Balde(tamM);
+        //std::cout << "Novo Balde criado" << std::endl;
+        conjuntoBaldes.push_back(novoBalde);
+        //std::cout << "Novo Balde adicionado" << std::endl;
+    }
 }
+
 size_t Diretorio::getTamanhoDir(){
     return this->conjuntoBaldes.size();
 }
@@ -21,7 +28,12 @@ void Diretorio::insere(std::string pseudoChave){
             std::cout << "implementaçao errada\n";
         }
         if(dLocal == dGlobal){
-            this->duplicaDiretorio();
+            if(dGlobal <= this->bitsB){
+                this->duplicaDiretorio();
+            }
+            else{
+                throw std::invalid_argument("Essa pseudochave não pode ser inserida, o diretório não pode mais ser duplicado");
+            }
         }
         this->divideBaldes(indiceBalde);
         this->insere(pseudoChave);
@@ -35,7 +47,7 @@ std::string Diretorio::busca(std::string pseudoChave){
     }
     else
         std::cout << "Element not found in conjuntoBaldes\n";
-    return 0;
+    return {};
 }
 
 void Diretorio::divideBaldes(size_t indiceBalde){

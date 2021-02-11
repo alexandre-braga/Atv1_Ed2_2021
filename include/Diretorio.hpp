@@ -14,7 +14,7 @@ class Diretorio{
         size_t bitsB;
         std::vector<Balde*> conjuntoBaldes;
     public:
-        Diretorio(size_t nBits);
+        Diretorio(size_t nBits, size_t tamM);
         size_t getTamanhoDir();
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);

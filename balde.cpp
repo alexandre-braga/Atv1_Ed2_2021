@@ -33,9 +33,9 @@ std::string Balde::busca(std::string pseudoChave){
     it = find (this->pseudoChaves.begin(), this->pseudoChaves.end(), pseudoChave);
     if (it != this->pseudoChaves.end())
         return pseudoChave;
-        
     else
         std::cout << "Element not found in pseudoChaves\n";
+    return {};
 }
 
 void Balde::atualizaBalde(size_t profundidadeNova) {
