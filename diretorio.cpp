@@ -18,7 +18,7 @@ size_t Diretorio::getTamanhoDir(){
 
 void Diretorio::imprimeDiretorio(){
     for(size_t i = 0; i < this->conjuntoBaldes.size(); i++){
-        std::cout << "\nElementos no balde de indice " << i << std::endl;
+        std::cout << "\nElementos no balde de indice " << i << " e endereço " << conjuntoBaldes.at(i) << std::endl;
         this->conjuntoBaldes[i]->imprimeBalde();
     }
 }
@@ -43,7 +43,8 @@ void Diretorio::insere(std::string pseudoChave){
                 this->duplicaDiretorio();
             }
             else{
-                throw std::invalid_argument("Essa pseudochave não pode ser inserida, o diretório não pode mais ser duplicado");
+                std::cout << "Essa pseudochave não pode ser inserida, o diretório não pode mais ser duplicado" << std::endl;
+                return;
             }
         }
         this->divideBaldes(indiceBalde);
@@ -62,7 +63,7 @@ std::string Diretorio::busca(std::string pseudoChave){
 }
 
 void Diretorio::divideBaldes(size_t indiceBalde){
-    std::cout << "Acessou a func divideBaldes" << std::endl;
+    //std::cout << "Acessou a func divideBaldes" << std::endl;
     //cria um novo balde
     size_t profundidadeNova = this->conjuntoBaldes[indiceBalde]->getProfundidadeLocal() + 1;
     size_t novoTamanhoM = this->conjuntoBaldes[indiceBalde]->getTamanhoM();
@@ -72,40 +73,46 @@ void Diretorio::divideBaldes(size_t indiceBalde){
     this->conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
     novoBalde->atualizaBalde(profundidadeNova);;
     
-    std::cout << "Baldes criados OK" << std::endl;
+    //std::cout << "Baldes criados OK" << std::endl;
 
     //percorre o balde original
     for (size_t i = 0; i < novoTamanhoM; i++){
         //pega a pseudochave no balde original
         std::string pseudoChaveAtual = this->conjuntoBaldes[indiceBalde]->getPseudoChave(i);
-        std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
+        //std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
 
         //redistribui as chaves, colocando como novoIndice a pseudoChave de acordo com a profundidadeGlobal 
         size_t novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
-        std::cout << "\nnovoIndice:" << novoIndice << std::endl;
+        //std::cout << "\nnovoIndice:" << novoIndice << std::endl;
 
         //se o novo indice for diferente do indice que ja tinha, coloca no novo Balde
         if(novoIndice != indiceBalde){
             novoBalde->insere(std::move(pseudoChaveAtual));
             //coloca o novo Balde no balde de novoIndice
-           this->conjuntoBaldes[novoIndice] = novoBalde;
+            this->conjuntoBaldes[novoIndice] = novoBalde;
+        }
+    }
+    for (size_t i = 0; i < novoTamanhoM; i++){
+        std::string pseudoChaveAtual = this->conjuntoBaldes[indiceBalde]->getPseudoChave(i);
+        std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
+        size_t novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
+        std::cout << "\nnovoIndice:" << novoIndice << std::endl;
+        if(novoIndice != indiceBalde){
+           conjuntoBaldes[indiceBalde]->apagaPseudoChave(i);
         }
     }
 }
 
 void Diretorio::duplicaDiretorio(){
-    std::cout << "Acessou a func duplicaDir" << std::endl;
+    //std::cout << "Acessou a func duplicaDir" << std::endl;
     this->profundidadeGlobal += 1;
     size_t tamanhoDir = this->getTamanhoDir();
     std::vector<Balde*> duplicata {2*tamanhoDir};
-    for (size_t i = 2*tamanhoDir; i > 0; i-=2){
-        duplicata[2*i] = this->conjuntoBaldes[i];
-        duplicata[2*i-1] = this->conjuntoBaldes[i];    
-        std::cout << "duplicata em" << i << std::endl;
-        std::cout << duplicata[2*i] << std::endl;
-        std::cout << duplicata[2*i-1] << std::endl;
+    for (size_t i = 0; i < tamanhoDir; i++){
+        duplicata[2*i] = std::move(this->conjuntoBaldes[i]);
+        duplicata[2*i+1] = std::move(this->conjuntoBaldes[i]);    
     }
     this->conjuntoBaldes = duplicata;
-    std::cout << "Diretorio após duplicata:\n" << std::endl;
-    this->imprimeDiretorio();
+    //std::cout << "Diretorio após duplicata:\n" << std::endl;
+    //this->imprimeDiretorio();
 }

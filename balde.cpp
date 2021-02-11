@@ -17,6 +17,10 @@ std::string Balde::getPseudoChave(size_t i){
     return this->pseudoChaves[i];
 }
 
+void Balde::apagaPseudoChave(size_t i){
+    pseudoChaves.erase(pseudoChaves.begin() + i);
+}
+
 void Balde::imprimeBalde(){
     for(size_t i = 0; i < this->getTamanhoM(); i++){
         std::cout << "Elemento na pos: " << i << " do balde" << std::endl;
