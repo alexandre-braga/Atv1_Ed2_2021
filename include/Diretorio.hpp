@@ -15,9 +15,10 @@ class Diretorio{
         std::vector<Balde*> conjuntoBaldes;
     public:
         Diretorio(size_t nBits);
+        size_t getTamanhoDir();
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
-        void divideBaldes(int indiceBalde);
+        void divideBaldes(size_t indiceBalde);
         void duplicaDiretorio();
 };
 

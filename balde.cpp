@@ -5,15 +5,15 @@ Balde::Balde(size_t tamM):pseudoChaves{tamM} {
     this->tamanhoM = tamM;
 }
 
-int Balde::getProfundidadeLocal(){
+size_t Balde::getProfundidadeLocal(){
     return this->profundidadeLocal;
 }
 
-int Balde::getTamanhoM(){
+size_t Balde::getTamanhoM(){
     return this->tamanhoM;
 }
 
-std::string Balde::getPseudoChave(int i){
+std::string Balde::getPseudoChave(size_t i){
     return this->pseudoChaves[i];
 }
 
@@ -38,6 +38,6 @@ std::string Balde::busca(std::string pseudoChave){
         std::cout << "Element not found in pseudoChaves\n";
 }
 
-void Balde::atualizaBalde(int profundidadeNova) {
+void Balde::atualizaBalde(size_t profundidadeNova) {
     this->profundidadeLocal = profundidadeNova;
 }

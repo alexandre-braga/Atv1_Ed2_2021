@@ -13,14 +13,14 @@ class Balde{
     public:
         Balde(size_t tamM); 
         
-        int getProfundidadeLocal();
-        int getTamanhoM();
-        std::string getPseudoChave(int i);
+        size_t getProfundidadeLocal();
+        size_t getTamanhoM();
+        std::string getPseudoChave(size_t i);
         bool isCheio();
 
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
-        void atualizaBalde(int profundidadeNova);
+        void atualizaBalde(size_t profundidadeNova);
 };
 
 #endif /* BALDE_HPP */
