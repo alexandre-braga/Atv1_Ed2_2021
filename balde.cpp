@@ -1,6 +1,6 @@
 #include "./include/Balde.hpp"
 
-Balde::Balde(size_t tamM):pseudoChaves{tamM} {
+Balde::Balde(size_t tamM) {
     this->profundidadeLocal = 0;
     this->tamanhoM = tamM;
 }
@@ -18,15 +18,15 @@ std::string Balde::getPseudoChave(size_t i){
 }
 
 void Balde::imprimeBalde(){
-    std::cout << "acessou a func" << std::endl;
     for(size_t i = 0; i < this->getTamanhoM(); i++){
         std::cout << "Elemento na pos: " << i << " do balde" << std::endl;
-        std::cout << "Com pseudochave: " << this->getPseudoChave(i) << std::endl;
+        if(i < pseudoChaves.size())
+            std::cout << "Com pseudochave: " << this->getPseudoChave(i) << std::endl;
     }
 }
 
 bool Balde::isCheio(){
-    if(this->pseudoChaves.size() < this->pseudoChaves.max_size()){
+    if(this->pseudoChaves.size() < this->getTamanhoM()){
         return false;
     }
     return true;

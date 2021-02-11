@@ -7,7 +7,7 @@ Diretorio::Diretorio(size_t nBits, size_t tamM) {
     for (size_t i = 0; i < 2; i++){
         Balde* novoBalde = new Balde(tamM);
         //std::cout << "Novo Balde criado" << std::endl;
-        conjuntoBaldes.push_back(novoBalde);
+        this->conjuntoBaldes.push_back(novoBalde);
         //std::cout << "Novo Balde adicionado" << std::endl;
     }
 }
@@ -17,17 +17,22 @@ size_t Diretorio::getTamanhoDir(){
 }
 
 void Diretorio::imprimeDiretorio(){
-    for(size_t i = 0; i < conjuntoBaldes.size(); i++){
+    for(size_t i = 0; i < this->conjuntoBaldes.size(); i++){
         std::cout << "Elementos no balde de indice " << i << std::endl;
-        conjuntoBaldes[i]->imprimeBalde();
+        this->conjuntoBaldes[i]->imprimeBalde();
     }
 }
+
 void Diretorio::insere(std::string pseudoChave){
     size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
-    size_t dLocal = conjuntoBaldes[indiceBalde]->getProfundidadeLocal();
+    std::cout << "indiceBalde: " << indiceBalde << std::endl;
+    size_t dLocal = this->conjuntoBaldes[indiceBalde]->getProfundidadeLocal();
+    std::cout << "dLocal: " << dLocal << std::endl;
     size_t dGlobal = this->profundidadeGlobal;
-    if(!conjuntoBaldes[indiceBalde]->isCheio()){
-        conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
+    std::cout << "dGlobal: " << dGlobal << std::endl;
+    
+    if(!this->conjuntoBaldes[indiceBalde]->isCheio()){
+        this->conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
     }
     else{
         if(dLocal > dGlobal){
@@ -49,7 +54,7 @@ void Diretorio::insere(std::string pseudoChave){
 std::string Diretorio::busca(std::string pseudoChave){
     size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
     if (indiceBalde < pow(2,this->profundidadeGlobal)){
-        conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
+        this->conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
     }
     else
         std::cout << "Element not found in conjuntoBaldes\n";
@@ -58,18 +63,18 @@ std::string Diretorio::busca(std::string pseudoChave){
 
 void Diretorio::divideBaldes(size_t indiceBalde){
     //cria um novo balde
-    size_t profundidadeNova = conjuntoBaldes[indiceBalde]->getProfundidadeLocal() + 1;
-    size_t novoTamanhoM = conjuntoBaldes[indiceBalde]->getTamanhoM();
+    size_t profundidadeNova = this->conjuntoBaldes[indiceBalde]->getProfundidadeLocal() + 1;
+    size_t novoTamanhoM = this->conjuntoBaldes[indiceBalde]->getTamanhoM();
     Balde* novoBalde = new Balde(novoTamanhoM);
 
     //coloca os 2 com profundidade+1
-    conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
+    this->conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
     novoBalde->atualizaBalde(profundidadeNova);
 
     //percorre o balde original
     for (size_t i = 0; i < novoTamanhoM; i++){
         //pega a pseudochave no balde original
-        std::string pseudoChaveAtual = conjuntoBaldes[indiceBalde]->getPseudoChave(i);
+        std::string pseudoChaveAtual = this->conjuntoBaldes[indiceBalde]->getPseudoChave(i);
         //redistribui as chaves, colocando como novoIndice a pseudoChave de acordo com a profundidadeGlobal 
         size_t novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
         //se o novo indice for diferente do indice que ja tinha, coloca no novo Balde
@@ -77,7 +82,7 @@ void Diretorio::divideBaldes(size_t indiceBalde){
             novoBalde->insere(std::move(pseudoChaveAtual));
         }
         //coloca o novo Balde no balde de novoIndice
-        conjuntoBaldes[novoIndice] = novoBalde;
+        this->conjuntoBaldes[novoIndice] = novoBalde;
     }
 }
 
@@ -86,8 +91,8 @@ void Diretorio::duplicaDiretorio(){
     size_t tamanhoDir = this->getTamanhoDir();
     std::vector<Balde*> duplicata {2*tamanhoDir};
     for (size_t i = tamanhoDir; i > 0; i-=2){
-        duplicata[2*i] = conjuntoBaldes[i];
-        duplicata[2*i-1] = conjuntoBaldes[i];
+        duplicata[2*i] = this->conjuntoBaldes[i];
+        duplicata[2*i-1] = this->conjuntoBaldes[i];
     }
     this->conjuntoBaldes = duplicata;
 }
