@@ -19,9 +19,11 @@ int main(){
     cout << "Diretório criado" << endl;
 
     dir->insere("0000");
-    dir->insere("0001");
+    dir->insere("0101");
     dir->insere("0010");
     dir->insere("0011");
+    dir->insere("0110");
+    dir->insere("0101");
     dir->insere("1010");
     dir->insere("1111");
 
