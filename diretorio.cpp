@@ -35,25 +35,27 @@ std::string Diretorio::busca(std::string pseudoChave){
 }
 
 void Diretorio::divideBaldes(int indiceBalde){
-    //divide os baldes em 2 novos com profundidadeLocal+1
+    //cria um novo balde
     int profundidadeNova = conjuntoBaldes[indiceBalde]->getProfundidadeLocal() + 1;
     int novoTamanhoM = conjuntoBaldes[indiceBalde]->getTamanhoM();
     Balde* novoBalde = new Balde(novoTamanhoM);
 
+    //coloca os 2 com profundidade+1
     conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
     novoBalde->atualizaBalde(profundidadeNova);
 
-    for (i = 0; i < novoTamanhoM; i++){
-        pseudoChaveAtual = 
-        std::string novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
+    //percorre o balde original
+    for (int i = 0; i < novoTamanhoM; i++){
+        //pega a pseudochave no balde original
+        std::string pseudoChaveAtual = conjuntoBaldes[indiceBalde]->getPseudoChave(i);
+        //redistribui as chaves, colocando como novoIndice a pseudoChave de acordo com a profundidadeGlobal 
+        int novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
+        //se o novo indice for diferente do indice que ja tinha, coloca no novo Balde
         if(novoIndice != indiceBalde){
-            novoBalde->insere(std::move(conjuntoBaldes[indiceBalde]->busca(pseudoChaveAtual)));
+            novoBalde->insere(std::move(pseudoChaveAtual));
         }
-        //move pro novo balde de novoIndice
-        //cria um novo balde no caso, e mantem o original, 
-        //ajusta ponteiros e dlocal (atualizaBalde())
-        //redistribui entre os 2 novos baldes
-
+        //coloca o novo Balde no balde de novoIndice
+        conjuntoBaldes[novoIndice] = novoBalde;
     }
 }
 

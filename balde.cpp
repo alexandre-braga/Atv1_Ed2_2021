@@ -13,6 +13,9 @@ int Balde::getTamanhoM(){
     return this->tamanhoM;
 }
 
+std::string Balde::getPseudoChave(int i){
+    return this->pseudoChaves[i];
+}
 
 bool Balde::isCheio(){
     if(this->pseudoChaves.size() < this->pseudoChaves.max_size()){

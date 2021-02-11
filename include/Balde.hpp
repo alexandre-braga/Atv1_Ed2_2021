@@ -15,11 +15,12 @@ class Balde{
         
         int getProfundidadeLocal();
         int getTamanhoM();
+        std::string getPseudoChave(int i);
         bool isCheio();
 
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
-        void atualizaBalde();
+        void atualizaBalde(int profundidadeNova);
 };
 
 #endif /* BALDE_HPP */

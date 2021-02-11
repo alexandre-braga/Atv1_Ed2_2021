@@ -17,7 +17,7 @@ class Diretorio{
         Diretorio(size_t nBits);
         void insere(std::string pseudoChave);
         std::string busca(std::string pseudoChave);
-        void divideBaldes();
+        void divideBaldes(int indiceBalde);
         void duplicaDiretorio();
 };
 
