@@ -8,24 +8,29 @@ using namespace std;
 
 int main(){
     size_t tamMMain;
-    size_t nBitsMain = 4;
-
-    cout << "Insira o tamanho M:" << endl;
+    size_t nBitsMain;
+    size_t nInsercoes;
+    
+    cout << "Insira o tamanho M dos baldes:" << endl;
     cin >> tamMMain;
-    //cout << "Insira o numero de bits B" << endl;
-    //cin >> nBitsMain;
+    cout << "Insira o numero de bits B:" << endl;
+    cin >> nBitsMain;
+    cout << "Insira o numero de inserções N:" << endl;
+    cin >> nInsercoes;
     
     Diretorio* dir = new Diretorio(nBitsMain, tamMMain);
     cout << "Diretório criado" << endl;
 
-    dir->insere("0000");
-    dir->insere("0101");
-    dir->insere("0010");
-    dir->insere("0011");
-    dir->insere("0110");
-    dir->insere("0101");
-    dir->insere("1010");
-    dir->insere("1111");
+
+    std::string pseudoChave = "";
+    for (size_t i = 0; i < nInsercoes; i++){
+        for (size_t j = 0; j < nBitsMain; j++){
+            pseudoChave.push_back(random() % 2 + '0');
+        }
+        dir->insere(pseudoChave);
+        pseudoChave.erase(pseudoChave.begin(),pseudoChave.end());
+    }
+    
 
     dir->imprimeDiretorio();
 }

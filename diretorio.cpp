@@ -52,7 +52,7 @@ void Diretorio::insere(std::string pseudoChave){
         this->insere(pseudoChave);
     }
 
-    //std::cout << "inseriu a chave: " << pseudoChave << std::endl;
+    std::cout << "inseriu a chave: " << pseudoChave << std::endl;
 }
 
 std::string Diretorio::busca(std::string pseudoChave){
