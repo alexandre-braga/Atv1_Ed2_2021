@@ -10,13 +10,16 @@ int main(){
     size_t tamMMain;
     size_t nBitsMain;
     size_t nInsercoes;
-    
+    size_t nCasasMesmoPadrao;
+
     cout << "Insira o tamanho M dos baldes:" << endl;
     cin >> tamMMain;
     cout << "Insira o numero de bits B:" << endl;
     cin >> nBitsMain;
     cout << "Insira o numero de inserções N:" << endl;
     cin >> nInsercoes;
+    cout << "Insira o numero de casas N para mesmo padrão:" << endl;
+    cin >> nCasasMesmoPadrao;
     
     Diretorio* dir = new Diretorio(nBitsMain, tamMMain);
     cout << "Diretório criado" << endl;
@@ -24,7 +27,10 @@ int main(){
 
     std::string pseudoChave = "";
     for (size_t i = 0; i < nInsercoes; i++){
-        for (size_t j = 0; j < nBitsMain; j++){
+        for (size_t k = 0; k < nCasasMesmoPadrao; k++){
+            pseudoChave.push_back('0');
+        }
+        for (size_t j = 0; j < (nBitsMain - nCasasMesmoPadrao); j++){
             pseudoChave.push_back(random() % 2 + '0');
         }
         dir->insere(pseudoChave);
