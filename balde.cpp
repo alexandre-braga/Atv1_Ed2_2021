@@ -18,11 +18,11 @@ std::string Balde::getPseudoChave(size_t i){
 }
 
 void Balde::apagaPseudoChave(size_t i){
-    //std::cout << "Antes de apagar a pseudoChave: " << std::endl;
-    //this->imprimeBalde();
+    std::cout << "Antes de apagar a pseudoChave: " << std::endl;
+    this->imprimeBalde();
     pseudoChaves.erase(pseudoChaves.begin() + i);
-    //std::cout << "Depois de apagar a pseudoChave: " << std::endl;
-    //this->imprimeBalde();
+    std::cout << "Depois de apagar a pseudoChave: " << std::endl;
+    this->imprimeBalde();
 }
 
 void Balde::imprimeBalde(){
@@ -44,14 +44,14 @@ void Balde::insere(std::string pseudoChave){
     this->pseudoChaves.push_back(pseudoChave);
 }
 
-std::string Balde::busca(std::string pseudoChave){
+bool Balde::busca(std::string pseudoChave){
     std::vector<std::string>::iterator it;
     it = find (this->pseudoChaves.begin(), this->pseudoChaves.end(), pseudoChave);
-    if (it != this->pseudoChaves.end())
-        return pseudoChave;
-    else
-        std::cout << "Element not found in pseudoChaves\n";
-    return {};
+    if (it != this->pseudoChaves.end()){
+        std::cout << "Elemento repetido\n";
+        return true;
+    }
+    return false;
 }
 
 void Balde::atualizaBalde(size_t profundidadeNova) {

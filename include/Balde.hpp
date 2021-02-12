@@ -21,7 +21,7 @@ class Balde{
         void imprimeBalde();
 
         void insere(std::string pseudoChave);
-        std::string busca(std::string pseudoChave);
+        bool busca(std::string pseudoChave);
         void atualizaBalde(size_t profundidadeNova);
 };
 

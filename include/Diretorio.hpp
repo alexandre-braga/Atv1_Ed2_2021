@@ -18,7 +18,7 @@ class Diretorio{
         size_t getTamanhoDir();
         void imprimeDiretorio();
         void insere(std::string pseudoChave);
-        std::string busca(std::string pseudoChave);
+        bool busca(std::string pseudoChave);
         void divideBaldes(size_t indiceBalde);
         void duplicaDiretorio();
 };

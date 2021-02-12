@@ -11,6 +11,7 @@ int main(){
     size_t nBitsMain;
     size_t nInsercoes;
     size_t nCasasMesmoPadrao;
+    size_t naoInseridos = 0;
 
     cout << "Insira o tamanho M dos baldes:" << endl;
     cin >> tamMMain;
@@ -33,10 +34,16 @@ int main(){
         for (size_t j = 0; j < (nBitsMain - nCasasMesmoPadrao); j++){
             pseudoChave.push_back(random() % 2 + '0');
         }
-        dir->insere(pseudoChave);
+        if(!dir->busca(pseudoChave)){
+            dir->insere(pseudoChave);
+        }
+        else{
+            naoInseridos++;
+        }
         pseudoChave.erase(pseudoChave.begin(),pseudoChave.end());
     }
     
 
     dir->imprimeDiretorio();
+    cout << "Não inseridos: " << naoInseridos << endl;
 }
