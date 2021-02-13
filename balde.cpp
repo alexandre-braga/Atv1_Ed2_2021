@@ -19,10 +19,10 @@ std::string Balde::getPseudoChave(size_t i){
 
 void Balde::apagaPseudoChave(size_t i){
     //std::cout << "Antes de apagar a pseudoChave: " << std::endl;
-    this->imprimeBalde();
+    //this->imprimeBalde();
     pseudoChaves.erase(pseudoChaves.begin() + i);
     //std::cout << "Depois de apagar a pseudoChave: " << std::endl;
-    this->imprimeBalde();
+    //this->imprimeBalde();
 }
 
 void Balde::imprimeBalde(){

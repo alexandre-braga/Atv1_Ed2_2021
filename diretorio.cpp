@@ -3,6 +3,7 @@
 Diretorio::Diretorio(size_t nBits, size_t tamM) {
     this->profundidadeGlobal = 1;
     this->bitsB = nBits;
+    this->nBaldes = 2;
     std::vector<Balde*> conjuntoBaldes;
     for (size_t i = 0; i < 2; i++){
         Balde* novoBalde = new Balde(tamM);
@@ -14,6 +15,10 @@ Diretorio::Diretorio(size_t nBits, size_t tamM) {
 
 size_t Diretorio::getTamanhoDir(){
     return this->conjuntoBaldes.size();
+}
+
+size_t Diretorio::getNBaldes(){
+    return this->nBaldes;
 }
 
 void Diretorio::imprimeDiretorio(){
@@ -30,7 +35,7 @@ void Diretorio::insere(std::string pseudoChave){
     size_t dLocal = this->conjuntoBaldes[indiceBalde]->getProfundidadeLocal();
 
     size_t dGlobal = this->profundidadeGlobal;
-    std::cout << "dGlobal: " << dGlobal << std::endl;
+    std::cerr << "dGlobal: " << dGlobal << std::endl;
     
     if(!this->conjuntoBaldes[indiceBalde]->isCheio()){
         this->conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
@@ -80,11 +85,11 @@ void Diretorio::divideBaldes(size_t indiceBalde){
     for (size_t i = 0; i < novoTamanhoM; i++){
         //pega a pseudochave no balde original
         std::string pseudoChaveAtual = this->conjuntoBaldes[indiceBalde]->getPseudoChave(i);
-        std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
+        //std::cout << "\nPseudoChaveAtual:" << pseudoChaveAtual << std::endl;
 
         //redistribui as chaves, colocando como novoIndice a pseudoChave de acordo com a profundidadeGlobal 
         size_t novoIndice = std::stoi(pseudoChaveAtual.substr(0, this->profundidadeGlobal), nullptr, 2);
-        std::cout << "\nnovoIndice:" << novoIndice << std::endl;
+        //std::cout << "\nnovoIndice:" << novoIndice << std::endl;
 
         //se o novo indice for diferente do indice que ja tinha, coloca no novo Balde
         if(novoIndice != indiceBalde){
@@ -108,6 +113,7 @@ void Diretorio::divideBaldes(size_t indiceBalde){
         else
             i++;
     }
+    this->nBaldes++;
 }
 
 void Diretorio::duplicaDiretorio(){
