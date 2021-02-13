@@ -48,7 +48,6 @@ bool Balde::busca(std::string pseudoChave){
     std::vector<std::string>::iterator it;
     it = find (this->pseudoChaves.begin(), this->pseudoChaves.end(), pseudoChave);
     if (it != this->pseudoChaves.end()){
-        std::cout << "Elemento repetido\n";
         return true;
     }
     return false;

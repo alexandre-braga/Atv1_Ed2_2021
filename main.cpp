@@ -35,10 +35,13 @@ int main(){
         for (size_t j = 0; j < (nBitsMain - nCasasMesmoPadrao); j++){
             pseudoChave.push_back(random() % 2 + '0');
         }
-        if(!dir->busca(pseudoChave)){
+        bool existe = dir->busca(pseudoChave);
+        cerr << "Busca: " << existe << endl;
+        if(!existe){
             dir->insere(pseudoChave);
         }
         else{
+            cerr << "nao inseriu: " << naoInseridos << endl;
             naoInseridos++;
         }
         pseudoChave.erase(pseudoChave.begin(),pseudoChave.end());

@@ -16,10 +16,6 @@ size_t Diretorio::getTamanhoDir(){
     return this->conjuntoBaldes.size();
 }
 
-size_t Diretorio::getNBaldes(){
-    return this->nBaldes;
-}
-
 void Diretorio::imprimeDiretorio(){
     std::cout << "Profundidade global: " << this->profundidadeGlobal << std::endl;
     for(size_t i = 0; i < this->conjuntoBaldes.size(); i++){
@@ -67,7 +63,7 @@ void Diretorio::insere(std::string pseudoChave){
 bool Diretorio::busca(std::string pseudoChave){
     size_t indiceBalde = std::stoi(pseudoChave.substr(0, this->profundidadeGlobal), nullptr, 2); //Acesso ao indice do Balde por binario
     if (indiceBalde < pow(2,this->profundidadeGlobal)){
-        this->conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
+        return this->conjuntoBaldes[indiceBalde]->busca(pseudoChave);     
     }
     return false;
 }
@@ -81,7 +77,7 @@ void Diretorio::divideBaldes(size_t indiceBalde){
 
     //coloca os 2 com profundidade+1
     this->conjuntoBaldes[indiceBalde]->atualizaBalde(profundidadeNova);
-    novoBalde->atualizaBalde(profundidadeNova);;
+    novoBalde->atualizaBalde(profundidadeNova);
     size_t tempNovoIndicePraDelecao;
     //std::cout << "Baldes criados OK" << std::endl;
 
