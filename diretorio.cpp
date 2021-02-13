@@ -3,7 +3,6 @@
 Diretorio::Diretorio(size_t nBits, size_t tamM) {
     this->profundidadeGlobal = 1;
     this->bitsB = nBits;
-    this->nBaldes = 2;
     std::vector<Balde*> conjuntoBaldes;
     for (size_t i = 0; i < 2; i++){
         Balde* novoBalde = new Balde(tamM);
@@ -53,8 +52,13 @@ void Diretorio::insere(std::string pseudoChave){
                 return;
             }
         }
-        this->divideBaldes(indiceBalde);
-        this->insere(pseudoChave);
+        if(!this->conjuntoBaldes[indiceBalde]->isCheio()){
+            this->conjuntoBaldes[indiceBalde]->insere(pseudoChave); 
+        }
+        if(dLocal < dGlobal){
+            this->divideBaldes(indiceBalde);
+            this->insere(pseudoChave);
+        }
     }
 
     //std::cout << "inseriu a chave: " << pseudoChave << std::endl;
@@ -113,7 +117,6 @@ void Diretorio::divideBaldes(size_t indiceBalde){
         else
             i++;
     }
-    this->nBaldes++;
 }
 
 void Diretorio::duplicaDiretorio(){

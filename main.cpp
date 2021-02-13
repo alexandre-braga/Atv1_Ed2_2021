@@ -52,5 +52,4 @@ int main(){
     double fatorCarga = double(a)/double(b);
     cout << "Fator de Carga: " << fixed << setprecision(4) << fatorCarga << endl;
     cout << "Tamanho Diretório: " << dir->getTamanhoDir() << endl;
-    cout << "Número de Baldes: " << dir->getNBaldes() << endl;
 }

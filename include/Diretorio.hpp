@@ -12,12 +12,10 @@ class Diretorio{
     private:
         size_t profundidadeGlobal;
         size_t bitsB;
-        size_t nBaldes;
         std::vector<Balde*> conjuntoBaldes;
     public:
         Diretorio(size_t nBits, size_t tamM);
         size_t getTamanhoDir();
-        size_t getNBaldes();
         void imprimeDiretorio();
         void insere(std::string pseudoChave);
         bool busca(std::string pseudoChave);
