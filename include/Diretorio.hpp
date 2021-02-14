@@ -16,6 +16,7 @@ class Diretorio{
     public:
         Diretorio(size_t nBits, size_t tamM);
         size_t getTamanhoDir();
+        size_t calculaNBaldes();
         void imprimeDiretorio();
         void insere(std::string pseudoChave);
         bool busca(std::string pseudoChave);

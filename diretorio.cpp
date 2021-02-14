@@ -16,6 +16,16 @@ size_t Diretorio::getTamanhoDir(){
     return this->conjuntoBaldes.size();
 }
 
+size_t Diretorio::calculaNBaldes(){
+    size_t nBaldes = 1;
+    for(size_t i = 1; i < this->conjuntoBaldes.size(); i++){
+        if(this->conjuntoBaldes[i] != this->conjuntoBaldes[i-1]){
+            nBaldes++;
+        }
+    }
+    return nBaldes;
+}
+
 void Diretorio::imprimeDiretorio(){
     std::cout << "Profundidade global: " << this->profundidadeGlobal << std::endl;
     for(size_t i = 0; i < this->conjuntoBaldes.size(); i++){

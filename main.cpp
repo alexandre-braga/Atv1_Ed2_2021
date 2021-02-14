@@ -51,8 +51,9 @@ int main(){
     dir->imprimeDiretorio();
     cout << "\nNão inseridos: " << naoInseridos << endl;
     size_t a = nInsercoes - naoInseridos;
-    size_t b = dir->getTamanhoDir() * tamMMain;
+    size_t b = dir->calculaNBaldes() * tamMMain;
     double fatorCarga = double(a)/double(b);
     cout << "Fator de Carga: " << fixed << setprecision(4) << fatorCarga << endl;
     cout << "Tamanho Diretório: " << dir->getTamanhoDir() << endl;
+    cout << "Número de Baldes: " << dir->calculaNBaldes() << endl;
 }
